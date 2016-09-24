@@ -23,24 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bubble);
         final ImageView img_animation = (ImageView) findViewById(R.id.imageView);
-
-
-
-     //   img_animation.setOnTouchListener(new OnTouchListener() {
-
-
-       //     public boolean onTouch(View v) {
-          //      Log.v("blah", "blah blah");
-                //  v.setVisibility(View.GONE);
-                //  img_animation.setVisibility(View.GONE);
-                //  img_animation.setImageDrawable(null);
-                //  img_animation.setImageBitmap(null);
-             //    img_animation.setImageResource(android.R.color.transparent);
-               // img_animation.setImageResource(0);
-            //    return true;
-           // }
-       // });
-
         TranslateAnimation tAnimation = new TranslateAnimation(0, 0, 4000, -1950);
         tAnimation.setDuration(7000);
         tAnimation.setRepeatCount(100);
