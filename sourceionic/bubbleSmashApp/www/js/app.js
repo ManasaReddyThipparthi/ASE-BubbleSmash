@@ -29,8 +29,8 @@ angular.module('app', ['ionic','ngCordova','app.controllers', 'app.routes', 'app
 
 	.state('login', {
 		url: "/login",
-		templateUrl: "templates/searchApp.html",
-		controller: 'searchAppCtrl'
+		templateUrl: "templates/login.html",
+		controller: 'loginCtrl'
 	})
     
     .state('register', {
