@@ -55,25 +55,33 @@ angular.module('app.controllers', [])
    
 .controller('levelCtrl', function($scope, $state) {
 
-  $scope.entergame = function() {  
-        console.log("Inside game");            
-        $state.go('gameEasy');         
+  $scope.goToExpertLevel = function() {  
+        console.log("Inside expert level");            
+        $state.go('expertGame');         
        
     };
     
+
     $scope.help = function() {  
         console.log("help");            
         $state.go('help');         
        
     };
     
-    
-    $scope.entergame = function() {  
-        console.log("Settings");            
-        $state.go('Settings');         
+    $scope.settings = function() {  
+        console.log("settings");            
+        $state.go('settings');         
        
     };
     
+ //   $cordovaDialogs.confirm('Are you sure you want to search?', 'Proceed', ['Cancel','Search']);
+   /*$cordovaDatePicker.show(options).then(function(date){
+        alert(date);
+    });*/
+
+ 
+})
+
     
 .controller('registerCtrl', function($scope, $state,$filter,$q,$firebaseAuth) {
    
@@ -104,25 +112,9 @@ angular.module('app.controllers', [])
 
 
 
-.controller('levelCtrl', function($scope, $state) {
-
-  $scope.goToExpertLevel = function() {  
-        console.log("Inside expert level");            
-        $state.go('gameEasy');         
-       
-    };
-    
-    
-  //   $cordovaDialogs.confirm('Are you sure you want to search?', 'Proceed', ['Cancel','Search']);
-   /*$cordovaDatePicker.show(options).then(function(date){
-        alert(date);
-    });*/
-
- 
-})
 
 
-.controller('easyLevelCtrl',function($window,$document){
+.controller('expertGameLevelCtrl',function($window,$document){
     
     // shim layer with setTimeout fallback
 $window.requestAnimFrame = (function(){
@@ -177,7 +169,7 @@ var POP = {
         POP.currentWidth = POP.WIDTH;
         POP.currentHeight = POP.HEIGHT;
         // this is our canvas element
-        POP.canvas = $document.getElementsByTagName('canvas')[0];
+        POP.canvas = $window.document.getElementsByTagName('canvas')[0];
         // it's important to set this
         // otherwise the browser will
         // default to 320x200
@@ -243,7 +235,7 @@ var POP = {
 
     resize: function() {
     
-        POP.canvas = $document.getElementsByTagName('canvas')[0];
+        POP.canvas = $window.document.getElementsByTagName('canvas')[0];
         
         POP.currentHeight = $window.innerHeight;
         // resize the width in proportion
@@ -254,7 +246,7 @@ var POP = {
         // page, allowing us to scroll pass
         // the address bar, and thus hide it.
         if (POP.android || POP.ios) {
-            $document.body.style.height = ($window.innerHeight + 50) + 'px';
+            $window.document.body.style.height = ($window.innerHeight + 50) + 'px';
         }
 
         // set the new canvas style width & height
