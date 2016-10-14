@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('searchAppCtrl', function($scope, $ionicPopup, $state,$q,$cordovaOauth,$cordovaSplashscreen,$firebaseAuth) {
+.controller('loginCtrl', function($scope,$ionicPopup, $state,$q,$cordovaOauth,$cordovaSplashscreen,$firebaseAuth) {
     var fbAuth = $firebaseAuth();
     $scope.data = {};
     $scope.IsLogedIn= false;
@@ -29,7 +29,7 @@ angular.module('app.controllers', [])
     };
     
     
-      $scope.facebookLogin = function() {
+      $scope.faceBookLogin = function() {
           console.log("Inside facebook login");
         $cordovaOauth.facebook("1112137608839690", ["email"]).then(function(result) {             
             $state.go('level');
@@ -37,6 +37,11 @@ angular.module('app.controllers', [])
             // error
             console.log(" error in facebook login"+error);
         });
+    };
+      
+    $scope.guestLogin = function() {
+          console.log("Inside guest Login");
+          $state.go('level');  
     };
       
     
@@ -48,7 +53,28 @@ angular.module('app.controllers', [])
 })
 
    
+.controller('levelCtrl', function($scope, $state) {
 
+  $scope.entergame = function() {  
+        console.log("Inside game");            
+        $state.go('gameEasy');         
+       
+    };
+    
+    $scope.help = function() {  
+        console.log("help");            
+        $state.go('help');         
+       
+    };
+    
+    
+    $scope.entergame = function() {  
+        console.log("Settings");            
+        $state.go('Settings');         
+       
+    };
+    
+    
 .controller('registerCtrl', function($scope, $state,$filter,$q,$firebaseAuth) {
    
      var fbAuth = $firebaseAuth();
@@ -80,24 +106,11 @@ angular.module('app.controllers', [])
 
 .controller('levelCtrl', function($scope, $state) {
 
-  $scope.entergame = function() {  
-        console.log("Inside game");            
+  $scope.goToExpertLevel = function() {  
+        console.log("Inside expert level");            
         $state.go('gameEasy');         
        
     };
-    
-    $scope.help = function() {  
-        console.log("help");            
-        $state.go('help');         
-       
-    };
-    
-    $scope.entergame = function() {  
-        console.log("Settings");            
-        $state.go('Settings');         
-       
-    };
-    
     
     
   //   $cordovaDialogs.confirm('Are you sure you want to search?', 'Proceed', ['Cancel','Search']);
@@ -109,17 +122,17 @@ angular.module('app.controllers', [])
 })
 
 
-.controller('easyLevelCtrl',function($window){
+.controller('easyLevelCtrl',function($window,$document){
     
     // shim layer with setTimeout fallback
 $window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame       || 
-          window.webkitRequestAnimationFrame || 
-          window.mozRequestAnimationFrame    || 
-          window.oRequestAnimationFrame      || 
-          window.msRequestAnimationFrame     || 
+  return  $window.requestAnimationFrame       || 
+          $window.webkitRequestAnimationFrame || 
+          $window.mozRequestAnimationFrame    || 
+          $window.oRequestAnimationFrame      || 
+          $window.msRequestAnimationFrame     || 
           function( callback ){
-            window.setTimeout(callback, 1000 / 60);
+            $window.setTimeout(callback, 1000 / 60);
           };
 })();
 
@@ -164,7 +177,7 @@ var POP = {
         POP.currentWidth = POP.WIDTH;
         POP.currentHeight = POP.HEIGHT;
         // this is our canvas element
-        POP.canvas = document.getElementsByTagName('canvas')[0];
+        POP.canvas = $document.getElementsByTagName('canvas')[0];
         // it's important to set this
         // otherwise the browser will
         // default to 320x200
@@ -176,7 +189,7 @@ var POP = {
         // we need to sniff out android & ios
         // so we can hide the address bar in
         // our resize function
-        POP.ua = navigator.userAgent.toLowerCase();
+        POP.ua = $window.navigator.userAgent.toLowerCase();
         POP.android = POP.ua.indexOf('android') > -1 ? true : false;
         POP.ios = ( POP.ua.indexOf('iphone') > -1 || POP.ua.indexOf('ipad') > -1  ) ? true : false;
 
@@ -195,7 +208,7 @@ var POP = {
         POP.wave.total = Math.ceil(POP.WIDTH / POP.wave.r) + 1;
 
         // listen for clicks
-        window.addEventListener('click', function(e) {
+        $window.addEventListener('click', function(e) {
             e.preventDefault();
             POP.Input.set(e);
         }, false);
@@ -230,7 +243,9 @@ var POP = {
 
     resize: function() {
     
-        POP.currentHeight = window.innerHeight;
+        POP.canvas = $document.getElementsByTagName('canvas')[0];
+        
+        POP.currentHeight = $window.innerHeight;
         // resize the width in proportion
         // to the new height
         POP.currentWidth = POP.currentHeight * POP.RATIO;
@@ -239,7 +254,7 @@ var POP = {
         // page, allowing us to scroll pass
         // the address bar, and thus hide it.
         if (POP.android || POP.ios) {
-            document.body.style.height = (window.innerHeight + 50) + 'px';
+            $document.body.style.height = ($window.innerHeight + 50) + 'px';
         }
 
         // set the new canvas style width & height
