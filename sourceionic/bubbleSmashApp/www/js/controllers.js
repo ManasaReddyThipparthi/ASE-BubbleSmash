@@ -78,10 +78,13 @@ angular.module('app.controllers', [])
 
 
 
-.controller('levelCtrl', function($scope, $state) {  
+.controller('levelCtrl', function($scope, $state) {
 
-
-    
+  $scope.goToExpertLevel = function() {  
+        console.log("Inside expert level");            
+        $state.go('gameEasy');         
+       
+    };
     
     
   //   $cordovaDialogs.confirm('Are you sure you want to search?', 'Proceed', ['Cancel','Search']);
@@ -89,22 +92,11 @@ angular.module('app.controllers', [])
         alert(date);
     });*/
 
-  
-   
-
- $scope.search = function() {   
-     
-       
-     
- }
  
- 
-    
 })
 
 
-.controller('easyLevelCtrl',function($window))
-{
+.controller('easyLevelCtrl',function($window){
     
     // shim layer with setTimeout fallback
 $window.requestAnimFrame = (function(){
@@ -568,4 +560,4 @@ POP.Particle = function(x, y,r, col) {
 $window.addEventListener('load', POP.init, false);
 $window.addEventListener('resize', POP.resize, false);
         
-}
+})
