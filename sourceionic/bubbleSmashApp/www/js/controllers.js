@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('searchAppCtrl', function($scope,LoginService, $ionicPopup, $state,$q,$cordovaOauth,$cordovaSplashscreen,$firebaseAuth) {
+.controller('searchAppCtrl', function($scope, $ionicPopup, $state,$q,$cordovaOauth,$cordovaSplashscreen,$firebaseAuth) {
     var fbAuth = $firebaseAuth();
     $scope.data = {};
     $scope.IsLogedIn= false;
@@ -49,7 +49,7 @@ angular.module('app.controllers', [])
 
    
 
-.controller('registerCtrl', function($scope, $state,$filter,$q,LoginService,$firebaseAuth) {
+.controller('registerCtrl', function($scope, $state,$filter,$q,$firebaseAuth) {
    
      var fbAuth = $firebaseAuth();
     
@@ -86,15 +86,15 @@ angular.module('app.controllers', [])
        
     };
     
-    $scope.entergame = function() {  
-        console.log("Inside game");            
-        $state.go('gameIntermediate');         
+    $scope.help = function() {  
+        console.log("help");            
+        $state.go('help');         
        
     };
     
     $scope.entergame = function() {  
-        console.log("Inside game");            
-        $state.go('gamedifficult');         
+        console.log("Settings");            
+        $state.go('Settings');         
        
     };
     
