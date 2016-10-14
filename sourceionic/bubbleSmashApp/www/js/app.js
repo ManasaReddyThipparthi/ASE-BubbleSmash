@@ -46,13 +46,13 @@ angular.module('app', ['ionic','ngCordova','app.controllers', 'app.routes', 'app
 	})
     
     .state('beginnerGame', {
-		url: "/beginnerGame",
-		templateUrl: "templates/beginnerGame.html"
+		/*url: "/beginnerGame",
+		templateUrl: "templates/beginnerGame.html"*/
 	})
   
     .state('intermediateGame', {
-		url: "/intermediateGame",
-		templateUrl: "templates/intermediateGame.html"
+	/*	url: "/intermediateGame",
+		templateUrl: "templates/intermediateGame.html"*/
 	})
   
    .state('expertGame', {
