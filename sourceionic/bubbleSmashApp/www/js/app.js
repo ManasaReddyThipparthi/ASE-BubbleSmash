@@ -45,6 +45,21 @@ angular.module('app', ['ionic','ngCordova','app.controllers', 'app.routes', 'app
 		controller: 'levelCtrl'
 	})
     
+      
+    
+     .state('Setting', {
+		url: "/Setting",
+		templateUrl: "templates/Setting.html",
+		controller: 'SettingCtrl'
+	})
+    
+    .state('help', {
+		url: "/help",
+		templateUrl: "templates/help.html",
+		controller: 'helpCtrl'
+	})
+    
+    
     
      .state('gameEasy', {
 		url: "/gameEasy",
