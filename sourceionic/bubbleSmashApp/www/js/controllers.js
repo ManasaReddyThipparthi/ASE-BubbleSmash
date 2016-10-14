@@ -80,11 +80,24 @@ angular.module('app.controllers', [])
 
 .controller('levelCtrl', function($scope, $state) {
 
-  $scope.goToExpertLevel = function() {  
-        console.log("Inside expert level");            
+  $scope.entergame = function() {  
+        console.log("Inside game");            
         $state.go('gameEasy');         
        
     };
+    
+    $scope.entergame = function() {  
+        console.log("Inside game");            
+        $state.go('gameIntermediate');         
+       
+    };
+    
+    $scope.entergame = function() {  
+        console.log("Inside game");            
+        $state.go('gamedifficult');         
+       
+    };
+    
     
     
   //   $cordovaDialogs.confirm('Are you sure you want to search?', 'Proceed', ['Cancel','Search']);
