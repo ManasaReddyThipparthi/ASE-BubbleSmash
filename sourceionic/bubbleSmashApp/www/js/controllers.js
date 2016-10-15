@@ -47,7 +47,53 @@ angular.module('starter.controllers', [])
         $scope.score = $scope.score;
     }
     score();
-});
+})
+
+bubbleSmashApp.controller("IntermediateController", function($scope, $state) {    
+    var bubbleIcon1 = document.getElementById("bubbleIcon1"); 
+    var bubbleIcon2 = document.getElementById("bubbleIcon2"); 
+    var bubbleIcon3 = document.getElementById("bubbleIcon3"); 
+    var bubble1 = document.getElementById("bubble1"); 
+    var bubble2 = document.getElementById("bubble2");
+    var bubble3 = document.getElementById("bubble3"); 
+    bubbleIcon1.style.display = 'block';  
+    bubbleIcon2.style.display = 'block'; 
+    bubbleIcon3.style.display = 'block'; 
+    $scope.loop1 = function(){
+        bubbleIcon1.style.display = 'block';
+        bubble1.style.top = '-200px';
+        bubble1.style.position = 'absolute';
+    }
+    $scope.loop2 = function(){
+        bubbleIcon2.style.display = 'block';
+        bubble2.style.top = '-200px';
+        bubble2.style.position = 'absolute';
+    }
+    $scope.loop3 = function(){
+        bubbleIcon3.style.display = 'block';
+        bubble3.style.top = '-200px';
+        bubble3.style.position = 'absolute';
+    }
+    $scope.smashBubbleIntermediate1 = function(){
+        bubbleIcon1.style.display = 'none';  
+        setTimeout(function(){
+            $scope.loop1();
+        },100)
+    }
+    $scope.smashBubbleIntermediate2 = function(){
+        bubbleIcon2.style.display = 'none';  
+        setTimeout(function(){
+            $scope.loop2();
+        },100)
+    }
+    $scope.smashBubbleIntermediate3 = function(){
+        bubbleIcon3.style.display = 'none';  
+        setTimeout(function(){
+            $scope.loop3();
+        },100)
+    }
+})
+
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
