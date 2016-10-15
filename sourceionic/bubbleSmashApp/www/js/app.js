@@ -66,6 +66,21 @@ angular.module('app', ['ionic','ngCordova','app.controllers', 'app.routes', 'app
 		templateUrl: "templates/help.html",
 	
 	})
+     .state('easylevel', {
+    url: '/easylevel',
+    templateUrl: 'templates/easylevel.html',
+    controller: 'BubbleController'
+  })
+
+  .state("intermediatelevel", {
+        url: "/intermediatelevel",
+        templateUrl: "templates/intermediatelevel.html",
+        controller: "IntermediateController"
+  })
+  .state("scorepage", {
+        url: "/scorepage",
+        templateUrl: "templates/scorepage.html"
+  });
     
      .state('settings', {
 		url: "/settings",
