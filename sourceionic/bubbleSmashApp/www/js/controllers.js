@@ -140,7 +140,7 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
         $scope.data = dataService.dataObj;
     }
     $scope.smashBubbleIntermediate2 = function(){
-          $scope.count = $scope.count + 1;
+          $scope.count = $scope.count + 5;
         document.getElementById('bubbleIntermediate2').classList.remove('animation');
         document.getElementById("bubbleIntermediate2").style.opacity = "0";
         setTimeout(
@@ -164,7 +164,7 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
         $scope.data = dataService.dataObj;
     }
     $scope.smashBubbleIntermediate4 = function(){
-          $scope.count = $scope.count + 1;
+          $scope.count = $scope.count - 5;
         document.getElementById('bubbleIntermediate4').classList.remove('animation');
         document.getElementById("bubbleIntermediate4").style.opacity = "0";
         setTimeout(
