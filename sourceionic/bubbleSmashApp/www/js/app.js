@@ -49,6 +49,11 @@ bubbleSmashApp.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: "templates/intermediatelevel.html",
         controller: "IntermediateLevelController"
   })
+   .state('expertGame', {
+		url: "/expertGame",
+		templateUrl: "templates/expertGame.html",
+		controller: 'expertGameLevelCtrl'
+	})
   .state("help", {
         url: "/help",
         templateUrl: "templates/help.html"
