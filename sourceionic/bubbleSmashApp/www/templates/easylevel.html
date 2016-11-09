@@ -2,9 +2,17 @@
     <ion-content>
         <div class="row row-center" id="easyLevelBubble" >
             <div class="col text-center" >
-                <div class="bouncer" id="bubble" ng-click="smashBubble()">
-                    <img src="img/bubble.png" class="bubbleIcon"  id="bubbleIcon">
-                </div>    
+                <audio id="audio" src="img/single_bubble.mp3"
+                       preload="auto"></audio>
+                <div class="bouncerEasy1 animation" id="bubble1" ng-click="smashBubble1()">
+                    <img src="img/bubble.png" alt="button" class="bubbleIcon"  id="bubbleIcon">
+                </div>  
+                <div class="bouncerEasy2 animation" id="bubble2" ng-click="smashBubble2()">
+                    <img src="img/bubble.png" alt="button" class="bubbleIcon"  id="bubbleIcon">
+                </div>  
+                 <div class="bouncerEasy3 animation" id="bubble3" ng-click="smashBubble3()">
+                    <img src="img/bubble.png" alt="button" class="bubbleIcon"  id="bubbleIcon">
+                </div>  
             </div>
         </div>
     </ion-content>
