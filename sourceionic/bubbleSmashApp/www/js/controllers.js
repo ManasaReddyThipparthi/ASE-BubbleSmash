@@ -9,7 +9,7 @@ bubbleSmashApp.controller("ScoreController", function($scope, $state, dataServic
         $state.go('quit')
     }
 });
-bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $window) {
+bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $window,$cordovaOauth,$cordovaSplashscreen) {
 
     $scope.login = function(username, password) {
       $http({
@@ -36,6 +36,21 @@ bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $wi
     $scope.register = function(){
         $state.go('register')
     }
+    
+     $scope.faceBookLogin = function() {
+          console.log("Inside facebook login");
+        $cordovaOauth.facebook("1112137608839690", ["email"]).then(function(result) {             
+            $state.go('home');
+        }, function(error) {
+            // error
+            console.log(" error in facebook login"+error);
+        });
+    };
+      
+    $scope.guestLogin = function() {
+          console.log("Inside guest Login");
+          $state.go('home');  
+    };
 });
 bubbleSmashApp.controller("RegisterController", function($scope, $http, $state, $window) {
      $scope.registerdata = function(name, username, password) {
