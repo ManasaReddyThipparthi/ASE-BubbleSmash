@@ -98,7 +98,7 @@ bubbleSmashApp.controller("EasyLevelController", function($scope, $state, dataSe
     }
     
     $scope.smashBubble2 = function(){
-        $scope.count = $scope.count + 1;
+        $scope.count = $scope.count + 5;
         document.getElementById('bubble2').classList.remove('animation');
         document.getElementById("bubble2").style.opacity = "0";
         setTimeout(
