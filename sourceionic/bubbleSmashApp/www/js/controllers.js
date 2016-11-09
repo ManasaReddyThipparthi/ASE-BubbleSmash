@@ -213,7 +213,7 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
 
 
 
-.controller('expertGameLevelCtrl',function($window,$document){
+bubbleSmashApp.controller('expertGameLevelCtrl',function($window,$document){
     
     console.log("start game 00");
     
