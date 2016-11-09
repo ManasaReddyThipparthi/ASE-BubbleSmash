@@ -6,6 +6,9 @@
         
 
 <style type="text/css">
+    
+    
+    
 
 
 html, body {
@@ -94,33 +97,200 @@ ul , li {
   top: 0;
   left: -102px;
 }
-.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+    
+    
+    .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
 .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
+    
+    
+    
+    body{
+    padding:10px;
+}
+
+
+.fab {
+  cursor: pointer;
+}
+.fab-backdrop {
+  color: rgba(255, 255, 255, 0);
+}
+.fab-primary, .fab-secondary {
+  transition: all 0.35s ease-in-out;
+}
+.fab.active .fab-primary {
+  opacity: 0;
+  transform: rotate(225deg);
+}
+.fab-secondary {
+  opacity: 0;
+  transform: rotate(-225deg);
+}
+.fab.active .fab-secondary {
+  opacity: 1;
+  transform: rotate(0);
+  margin-top: -2px;
+}
+
+
+
+#inbox .show-on-hover:hover > ul.dropdown-menu {
+    display: block;    
+    
+}
+#inbox .show-on-hover {
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
+}
+#inbox .btn-io{
+    border-radius: 50%;
+    height: 54px;
+    width: 54px;
+    padding: 0 !important;
+    box-shadow: 0px 3px 7px 0px rgba(202, 124, 124, 0.72);
+}
+#inbox .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
+top: auto;
+bottom: 100%;
+margin-bottom: 1px;
+margin-bottom: -5px;
+padding-bottom: 30px;
+}
+#inbox .dropdown-menu-right {
+right: 0 !Important;
+left: auto !Important;
+}
+#inbox .dropdown-menu {
+position: absolute;
+top: 100%;
+left: 0;
+z-index: 1000;
+display: none;
+float: left;
+min-width: 50px;
+padding: 5px 0;
+margin: 2px 0 0;
+font-size: 14px;
+text-align: center;
+list-style: none;
+background-color: rgba(255, 255, 255, 0) !Important;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+border: none;
+border-radius: 0px;
+-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0) !Important;
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0) !Important;
+}
+#inbox .fa-iox{
+    font-size: 22px;
+}
+#inbox .dropdown-menu > li > a {
+display: block;
+padding: 0;
+padding-top: 4px;
+margin-top: 20px;
+clear: both;
+font-weight: normal;
+line-height: 1.42857143;
+color: #333;
+background: #fff;
+white-space: nowrap;
+width: 40px;
+height: 40px;
+border: solid 1px #ccc;
+border-radius: 50px;
+font-size: 21px;
+box-shadow: 0px 3px 7px 0px rgba(203, 203, 203, 0.72);
+}
+#inbox .dropdown-menu > li:first-child>a {
+    background: #6E4320 !important;
+    color: #fff !important;
+}
+#inbox .dropdown-menu > li:last-child>a {
+    background: #D3A516;
+    color: #fff;
+}
+#inbox .dropdown-menu > li:nth-child(3)>a {
+    background: #3C80F6;
+    color: #fff;
+}
+#inbox .dropdown-menu > li:nth-child(2)>a {
+    background: #2CAC26;
+    color: #fff;
+}
+#inbox .fa-iosm{
+    
+    margin-top: 7px;
+}
+
  
   </style>
+        
+        
 
 
 
 
 <div class="ringMenu">
 <ul>
-  <li class="main"><a ng-click="intermediatelevel()">Intermediate</a></li>
-  <li class="top"><a ng-click="easylevel()">Easy</a></li>
+  <li class="main"><a ng-click="intermediate()">Intermediate</a></li>
+  <li class="top"><a ng-click="easy()">Easy</a></li>
   <li class="right"><a ng-click= "settings()">Settings</a></li>
   <li class="bottom"><a ng-click= "goToExpertLevel()">Difficult</a></li>
   <li class="left"><a ng-click= "help()">Help</a></li>
 </ul>
 <!-- /.ringMenu --></div>
         
-        <a class="btn icon-btn btn-primary" href="#">></span>Like</a>
-<a class="btn icon-btn btn-success" href="#">Add</a>
-<a class="btn icon-btn btn-info" href="#">Share</a>
+        
+        
+        <div class="container">
+
+<a class="btn icon-btn btn-primary" ng-click ="like()"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
+
+<a class="btn icon-btn btn-info" ng-click ="share()"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
+            
+<a class="btn icon-btn btn-success" ng-click ="rate()"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>rate</a>
+            
+            
+            
+            
+            <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<div class="container">
+	<div class="row">
+		        <div id="inbox">
+          <div class="fab btn-group show-on-hover dropup">
+              <div data-toggle="tooltip" data-placement="left" title="Compose" style="margin-left: 42px;">
+          <button type="button" class="btn btn-danger btn-io dropdown-toggle" data-toggle="dropdown">
+            <span class="fa-stack fa-2x">
+                <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
+                <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
+                <i class="fa fa-pencil fa-stack-1x fa-inverse fab-secondary"></i>
+            </span>
+          </button></div>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><a href="#" data-toggle="tooltip" data-placement="left" title="Coffee"><i class="fa fa-coffee"></i></a></li>
+            <li><a href="#" data-toggle="tooltip" data-placement="left" title="LiveChat"><i class="fa fa-comments-o"></i></a></li>
+            <li><a href="#" data-toggle="tooltip" data-placement="left" title="Reminders"><i class="fa fa-hand-o-up"></i></a></li>
+            <li><a href="#" data-toggle="tooltip" data-placement="left" title="Invites"><i class="fa fa-ticket"></i></a></li>
+          </ul>
+        </div>
+        </div>
+	</div>
+</div>
+
 
 
         
-    </ion-content>
+   
+            
+            </ion-content>
 </ion-view>
   
+
+
+     
+
 
 
      
