@@ -98,6 +98,10 @@ bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $wi
     $scope.help = function() {
         $state.go('help')
     }
+    
+     $scope.rate = function() {
+        $state.go('rate')
+    }
 });
 bubbleSmashApp.controller("EasyLevelController", function($scope, $state, dataService) {
 
