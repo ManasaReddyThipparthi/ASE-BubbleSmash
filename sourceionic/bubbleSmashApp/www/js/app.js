@@ -75,5 +75,13 @@ bubbleSmashApp.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: "templates/scorepage.html",
         controller: "ScoreController"
   });
+  
+  .state('rate', {
+		url: "/rate",
+		templateUrl: "templates/rate.html"
+	
+    
+    })
+  
     $urlRouterProvider.otherwise('/login');
 })
