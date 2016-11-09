@@ -1,96 +1,74 @@
-// Ionic Starter App
+var bubbleSmashApp=angular.module("starter", ["ionic","ngCordova","firebase"]);
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic','ngCordova','app.controllers', 'app.routes', 'app.directives','app.services','ngCordovaOauth','firebase'])
-
-.run(function($ionicPlatform) {
+bubbleSmashApp.factory('dataService', function() {
+  var _dataObj = '';
+  return {
+    dataObj: _dataObj
+  };
+})
+bubbleSmashApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+    if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
     }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
+    if(window.StatusBar) {
       StatusBar.styleDefault();
     }
   });
 })
 
-
-
-.config(function($stateProvider,$urlRouterProvider){
-	$stateProvider
-
-	.state('login', {
-		url: "/login",
-		templateUrl: "templates/login.html",
-		controller: 'loginCtrl'
-	})
-    
-    .state('register', {
-		url: "/register",
-		templateUrl: "templates/register.html",
-		controller: 'registerCtrl'
-	})
-    
-    .state('level', {
-		url: "/level",
-		templateUrl: "templates/level.html",
-		controller: 'levelCtrl'
-	})
-    
-    .state('beginnerGame', {
-		/*url: "/beginnerGame",
-		templateUrl: "templates/beginnerGame.html"*/
-	})
-  
-    .state('intermediateGame', {
-	/*	url: "/intermediateGame",
-		templateUrl: "templates/intermediateGame.html"*/
-	})
-  
-   .state('expertGame', {
-		url: "/expertGame",
-		templateUrl: "templates/expertGame.html",
-		controller: 'expertGameLevelCtrl'
-	})
-  
-   .state('help', {
-		url: "/help",
-		templateUrl: "templates/help.html",
-	
-	})
-     .state('easylevel', {
-    url: '/easylevel',
-    templateUrl: 'templates/easylevel.html',
-    controller: 'BubbleController'
+bubbleSmashApp.config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+  .state("login", {
+        url: "/login",
+        templateUrl: "templates/login.html",
+        controller: "LoginController",
+        cache: false
   })
-
+  .state('register', {
+        url: '/register',
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterController'
+  })
+  .state('cancel', {
+        url: '/cancel',
+        templateUrl: 'templates/login.html'
+  })
+  .state('home', {
+        url: '/home',
+        templateUrl: 'templates/level.html',
+        controller: 'LevelController'
+  })
+  .state('easylevel', {
+        url: '/easylevel',
+        templateUrl: 'templates/easyLevel.html',
+        controller: 'EasyLevelController'
+  })
   .state("intermediatelevel", {
         url: "/intermediatelevel",
         templateUrl: "templates/intermediatelevel.html",
-        controller: "IntermediateController"
+        controller: "IntermediateLevelController"
   })
+  .state("help", {
+        url: "/help",
+        templateUrl: "templates/help.html"
+  })
+  .state("settings", {
+        url: "/settings",
+        templateUrl: "templates/settings.html"
+  })
+  .state("backtohome", {
+        url: "/backtohome",
+        templateUrl: "templates/level.html"
+  })
+  .state("quit", {
+        url: "/quit",
+        templateUrl: "templates/login.html"
+  })  
   .state("scorepage", {
         url: "/scorepage",
-        templateUrl: "templates/scorepage.html"
+        templateUrl: "templates/scorepage.html",
+        controller: "ScoreController"
   });
-    
-     .state('settings', {
-		url: "/settings",
-		templateUrl: "templates/settings.html"
-	
-	});
-    
-    	
-$urlRouterProvider
-    
-    .otherwise('/login');
-  
-});
+    $urlRouterProvider.otherwise('/login');
+})
