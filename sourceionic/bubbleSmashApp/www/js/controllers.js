@@ -90,6 +90,11 @@ bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $wi
         $state.go('settings')
     }
 
+    $scope.goToExpertLevel = function() {  
+        console.log("Inside expert level");            
+        $state.go('expertGame'); 
+    }
+    
     $scope.help = function() {
         $state.go('help')
     }
