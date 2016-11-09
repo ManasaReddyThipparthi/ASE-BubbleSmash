@@ -1,4 +1,4 @@
-var bubbleSmashApp=angular.module("starter", ["ionic","ngCordova","firebase"]);
+var bubbleSmashApp=angular.module("starter", ["ionic","ngCordova","ngCordovaOauth","firebase"]);
 
 bubbleSmashApp.factory('dataService', function() {
   var _dataObj = '';
@@ -74,14 +74,14 @@ bubbleSmashApp.config(function($stateProvider, $urlRouterProvider) {
         url: "/scorepage",
         templateUrl: "templates/scorepage.html",
         controller: "ScoreController"
-  });
+  })
   
   .state('rate', {
 		url: "/rate",
 		templateUrl: "templates/rate.html"
 	
     
-    })
+    });
   
     $urlRouterProvider.otherwise('/login');
 })
