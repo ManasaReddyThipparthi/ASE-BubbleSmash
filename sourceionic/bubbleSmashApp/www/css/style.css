@@ -1,114 +1,91 @@
-/* Empty. Add your own CSS if you like */
-msg {
-color:white;
-font-size: 15px;
-font-: 
+img.bubbleIcon {
+    -webkit-user-drag: none;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 80px !important;
+    max-height: 80px !important;
 }
-
-.scroll {
-    height: 100%;
+#home{
+   -webkit-user-drag: none;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
 }
- 
-#map {
-    width: 100%;
-    height: 80%;
+#gameOver{
+    color: #1e70b9;
+    font-size: 30px;
+    font-style: italic;
+    font-family: monospace;
+    background: white;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 14px;
 }
-
-
-
-/*
-    Note: It is best to use a less version of this file ( see http://css2less.cc
-    For the media queries use @screen-sm-min instead of 768px.
-    For .omb_spanOr use @body-bg instead of white.
-*/
-
-@media (min-width: 768px) {
-    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
-        margin-left: 25%;
-    }
+.row{
+    margin-top:40px;
 }
-
-.omb_login .omb_authTitle {
-    text-align: center;	
+#quitRow{
+    margin-top:30px;
 }
-	
-.omb_login .omb_socialButtons a {
-	color: white; // In yourUse @body-bg 
-	opacity:0.9;
-    font-size: 2em;
+.col{
+    margin-left:25px;
+    margin-right:25px;
 }
-.omb_login .omb_socialButtons a:hover {
-    color: white;
-	opacity:1;
-     font-size: 2em;
+span#score{
+    color:white;
+    font-size:25px;
+    font-style:italic;
+    font-family : monospace;
 }
-.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998; height:3em; font-size: 2em; }
-.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
-.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
-
-
-.omb_login .omb_loginOr {
-	position: relative;
-	font-size: 1.5em;
-	color: #aaa;
-	margin-top: 1em;
-	margin-bottom: 1em;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+.success{
+    margin-top:19px;
 }
-.omb_login .omb_loginOr .omb_hrOr {
-	background-color: #cdcdcd;
-	height: 1px;
-	margin-top: 0px !important;
-	margin-bottom: 0px !important;
+span#scoreEscaped{
+    color:white;
+     font-size:20px;
+    font-style:italic;
+    font-family : monospace;
 }
-.omb_login .omb_loginOr .omb_spanOr {
-	display: block;
-	position: absolute;
-	left: 50%;
-	top: -0.6em;
-	margin-left: -1.5em;
-    margin-right: -0.5em;
-	background-color: white;
-	width: 3em;
-	text-align: center;
-}			
-
-.omb_login .omb_loginForm .input-group.i {
-	width: 2em;
-}
-.omb_login .omb_loginForm  .help-block {
-    color: red;
-}
-
-	
-@media (min-width: 768px) {
-    .omb_login .omb_forgotPwd {
-        text-align: right;		
- 	}		
+#quit{
+    -webkit-user-drag: none;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
 }
 
 
-.btn-twitter {
-    background-color: #3399CC !important;
-    width: 51px;
-    color:#FFFFFF!important;
+
+
+.pane{
+    background-image: url('data:image/jpeg;base64,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');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.btn-facebook {
-    background-color: #3D5B96 !important;
-    width: 51px;
-    color:#FFFFFF!important;
-}
 
-.btn-facebook {
-    background-color: #3D5B96 !important;
-    width: 51px;
-    color:#FFFFFF!important;
+a {
+  background:orange;
 }
-
-.btn-google {
-    background-color: #DD3F34 !important;
-    width: 51px;
-    color:#FFFFFF!important;
+.wrapper {
+  -webkit-animation: move 10s infinite;
+}
+@-webkit-keyframes move {
+   0% {
+   -webkit-transform: translate(0px, 0px) rotateZ(0.001deg);  
+   -webkit-animation-timing-function:ease-in-out
+  }
+  50% {
+    -webkit-transform: translate(0px, 500px) rotateZ(0.001deg);
+    animation-timing-function:ease-in-out
+  }
+  100% {
+   -webkit-transform: translate(0px, 0px) rotateZ(0.001deg);
+   -webkit-animation-timing-function:ease-in-out
+  }
+}
+label{
+    color:white;
 }
