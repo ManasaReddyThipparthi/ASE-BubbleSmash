@@ -247,10 +247,7 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
 });
 
 
-
-
-
-bubbleSmashApp.controller('expertGameLevelCtrl',function($scope,$window,$document,$state){
+bubbleSmashApp.controller('expertGameLevelCtrl',function($scope,$window,$document,$state,$rootScope,shareDataService){
     
     console.log("start game 00");
     
@@ -365,9 +362,11 @@ var POP = {
                 
                 var total=POP.score.hit+POP.score.escaped;
                 
-                if(total>10)
+                if(total>5)
                 {
-                      console.log("total 10 games");            
+                      console.log("total 5 games");
+                    // $rootScope.$broadcast('score', POP);
+                      shareDataService.dataObj=POP.score.hit;
                       $state.go('scorepage');  
                 }
                 
@@ -745,4 +744,6 @@ $window.addEventListener('resize', POP.resize, false);
 $window.onload = POP.init();
     $window.resize = POP.resize();
         
-})
+});
+
+
