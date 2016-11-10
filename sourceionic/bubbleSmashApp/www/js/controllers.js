@@ -161,7 +161,26 @@ bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordo
     }
 });
     // Intermediate Level
-bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state, dataService) {
+bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state, $cordovaGeolocation, $ionicPlatform, $http, dataService) {
+     $scope.location = '';
+    $ionicPlatform.ready(function() {
+        var posOptions = {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 0
+        };
+        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+            var lat  = position.coords.latitude;
+            var long = position.coords.longitude;
+            var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'&key=AIzaSyCH7iZTTwU80B-p1KGL4FUVJ2nvNs3cyvo'
+        $http({
+            method: 'GET',
+            url : url
+        }).success(function(data) {
+             $scope.location =data.results[0].formatted_address.split(',')[0]+" "+data.results[0].formatted_address.split(',')[1];
+        })        
+    })
+});
     
     $scope.count = 0;
     setInterval(function(){ $state.go('scorepage') }, 50000);
