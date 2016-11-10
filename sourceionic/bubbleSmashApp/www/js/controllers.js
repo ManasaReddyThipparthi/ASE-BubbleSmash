@@ -103,7 +103,21 @@ bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $wi
         $state.go('rate')
     }
 });
-bubbleSmashApp.controller("EasyLevelController", function($scope, $state, dataService) {
+bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordovaGeolocation, $ionicPlatform, $http, dataService) {
+
+    // Easy Level
+    $scope.location='';
+    navigator.geolocation.getCurrentPosition(function(pos) {
+            var lat  = pos.coords.latitude;
+            var long = pos.coords.longitude;
+      var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+long+'&key=AIzaSyCH7iZTTwU80B-p1KGL4FUVJ2nvNs3cyvo'
+             $http({
+            method: 'GET',
+            url : url
+        }).success(function(data) {
+             $scope.location =data.results[0].formatted_address.split(',')[0]+" "+data.results[0].formatted_address.split(',')[1];
+        })  
+    });  
 
     // Easy Level
     $scope.count = 0;
