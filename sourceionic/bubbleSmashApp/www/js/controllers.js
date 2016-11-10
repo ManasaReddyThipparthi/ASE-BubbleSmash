@@ -1,8 +1,11 @@
-bubbleSmashApp.controller("ScoreController", function($scope, $state, dataService) {
-    $scope.data = dataService.dataObj;
+bubbleSmashApp.controller("ScoreController", function($scope, $state, shareDataService,$rootScope) {
+     console.log("Score data is :"+ shareDataService.dataObj);
+    $scope.data = shareDataService.dataObj;
+
+    //console.log("Score data is :"+ data);
     
     $scope.backToHome = function() {
-        $state.go('backtohome')
+    $state.go('backtohome')
     }
     
     $scope.quit = function() {
@@ -103,7 +106,7 @@ bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $wi
         $state.go('rate')
     }
 });
-bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordovaGeolocation, $ionicPlatform, $http, dataService) {
+bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordovaGeolocation, $ionicPlatform, $http, shareDataService) {
 
     // Easy Level
     $scope.location='';
@@ -131,8 +134,8 @@ bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordo
             document.getElementById('bubble1').classList.add('animation');
             document.getElementById("bubble1").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
     
     $scope.smashBubble2 = function(){
@@ -144,8 +147,8 @@ bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordo
             document.getElementById('bubble2').classList.add('animation');
             document.getElementById("bubble2").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
     $scope.smashBubble3 = function(){
         $scope.count = $scope.count + 1;
@@ -156,12 +159,12 @@ bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordo
             document.getElementById('bubble3').classList.add('animation');
             document.getElementById("bubble3").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
 });
     // Intermediate Level
-bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state, $cordovaGeolocation, $ionicPlatform, $http, dataService) {
+bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state, $cordovaGeolocation, $ionicPlatform, $http, shareDataService) {
      $scope.location = '';
     $ionicPlatform.ready(function() {
         var posOptions = {
@@ -193,8 +196,8 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
             document.getElementById('bubbleIntermediate1').classList.add('animation');
             document.getElementById("bubbleIntermediate1").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
     $scope.smashBubbleIntermediate2 = function(){
           $scope.count = $scope.count + 5;
@@ -205,8 +208,8 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
             document.getElementById('bubbleIntermediate2').classList.add('animation');
             document.getElementById("bubbleIntermediate2").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
     $scope.smashBubbleIntermediate3 = function(){
           $scope.count = $scope.count + 1;
@@ -217,8 +220,8 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
             document.getElementById('bubbleIntermediate3').classList.add('animation');
             document.getElementById("bubbleIntermediate3").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
     $scope.smashBubbleIntermediate4 = function(){
           $scope.count = $scope.count - 5;
@@ -229,8 +232,8 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
             document.getElementById('bubbleIntermediate4').classList.add('animation');
             document.getElementById("bubbleIntermediate4").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
     $scope.smashBubbleIntermediate5 = function(){
           $scope.count = $scope.count + 1;
@@ -241,8 +244,8 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
             document.getElementById('bubbleIntermediate5').classList.add('animation');
             document.getElementById("bubbleIntermediate5").style.opacity = "1";
         }, 100);
-        dataService.dataObj=$scope.count;
-        $scope.data = dataService.dataObj;
+        shareDataService.dataObj=$scope.count;
+        $scope.data = shareDataService.dataObj;
     }
 });
 
