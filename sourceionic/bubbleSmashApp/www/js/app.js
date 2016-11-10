@@ -1,11 +1,12 @@
 var bubbleSmashApp=angular.module("starter", ["ionic","ngCordova","ngCordovaOauth","firebase"]);
 
-bubbleSmashApp.factory('dataService', function() {
+bubbleSmashApp.factory('shareDataService', function() {
   var _dataObj = '';
   return {
     dataObj: _dataObj
   };
 })
+
 bubbleSmashApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
