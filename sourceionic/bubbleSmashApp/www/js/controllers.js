@@ -217,14 +217,19 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
 
 
 
-bubbleSmashApp.controller('expertGameLevelCtrl',function($window,$document){
+bubbleSmashApp.controller('expertGameLevelCtrl',function($scope,$window,$document,$state){
     
     console.log("start game 00");
+    
+    /*$scope.play = function(sound) {
+        $cordovaNativeAudio.play(sound);
+    };*/    
     
     // shim layer with setTimeout fallback
 $window.requestAnimFrame = (function(){
     
-    console.log("start game");
+          console.log("start game");
+    
   return  $window.requestAnimationFrame       || 
           $window.webkitRequestAnimationFrame || 
           $window.mozRequestAnimationFrame    || 
@@ -234,6 +239,8 @@ $window.requestAnimFrame = (function(){
             $window.setTimeout(callback, 1000 / 60);
           };
 })();
+    
+
 
 // namespace our game
 var POP = {
@@ -268,116 +275,7 @@ var POP = {
     android: null,
     ios:  null,
 
-    init: function() {
    
-        // the proportion of width to height
-        POP.RATIO = POP.WIDTH / POP.HEIGHT;
-        // these will change when the screen is resize
-        POP.currentWidth = POP.WIDTH;
-        POP.currentHeight = POP.HEIGHT;
-        // this is our canvas element
-        POP.canvas = $window.document.getElementsByTagName('canvas')[0];
-        // it's important to set this
-        // otherwise the browser will
-        // default to 320x200
-        POP.canvas.width = POP.WIDTH;
-        POP.canvas.height = POP.HEIGHT;
-        // the canvas context allows us to 
-        // interact with the canvas api
-        POP.ctx = POP.canvas.getContext('2d');
-        // we need to sniff out android & ios
-        // so we can hide the address bar in
-        // our resize function
-        POP.ua = $window.navigator.userAgent.toLowerCase();
-        POP.android = POP.ua.indexOf('android') > -1 ? true : false;
-        POP.ios = ( POP.ua.indexOf('iphone') > -1 || POP.ua.indexOf('ipad') > -1  ) ? true : false;
-
-        // set up our wave effect
-        // basically, a series of overlapping circles
-        // across the top of screen
-        POP.wave = {
-            x: -25, // x coord of first circle
-            y: -40, // y coord of first circle
-            r: 50, // circle radius
-            time: 0, // we'll use this in calculating the sine wave
-            offset: 0 // this will be the sine wave offset
-        }; 
-        // calculate how many circles we need to 
-        // cover the screen width
-        POP.wave.total = Math.ceil(POP.WIDTH / POP.wave.r) + 1;
-
-        // listen for clicks
-        $window.addEventListener('click', function(e) {
-            e.preventDefault();
-            POP.Input.set(e);
-        }, false);
-
-        // listen for touches
-        $window.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            // the event object has an array
-            // called touches, we just want
-            // the first touch
-            POP.Input.set(e.touches[0]);
-        }, false);
-        $window.addEventListener('touchmove', function(e) {
-            // we're not interested in this
-            // but prevent default behaviour
-            // so the screen doesn't scroll
-            // or zoom
-            e.preventDefault();
-        }, false);
-        $window.addEventListener('touchend', function(e) {
-            // as above
-            e.preventDefault();
-        }, false);
-
-        // we're ready to resize
-        POP.resize();
-
-        POP.loop();
-
-    },
-
-
-    resize: function() {
-    
-        POP.canvas = $window.document.getElementsByTagName('canvas')[0];
-        
-        POP.currentHeight = $window.innerHeight;
-        // resize the width in proportion
-        // to the new height
-        POP.currentWidth = POP.currentHeight * POP.RATIO;
-
-        // this will create some extra space on the
-        // page, allowing us to scroll pass
-        // the address bar, and thus hide it.
-        if (POP.android || POP.ios) {
-            $window.document.body.style.height = ($window.innerHeight + 50) + 'px';
-        }
-
-        // set the new canvas style width & height
-        // note: our canvas is still 320x480 but
-        // we're essentially scaling it with CSS
-        POP.canvas.style.width = POP.currentWidth + 'px';
-        POP.canvas.style.height = POP.currentHeight + 'px';
-
-        // the amount by which the css resized canvas
-        // is different to the actual (480x320) size.
-        POP.scale = POP.currentWidth / POP.WIDTH;
-        // position of canvas in relation to
-        // the screen
-        POP.offset.top = POP.canvas.offsetTop;
-        POP.offset.left = POP.canvas.offsetLeft;
-
-        // we use a timeout here as some mobile
-        // browsers won't scroll if there is not
-        // a small delay
-        $window.setTimeout(function() {
-                $window.scrollTo(0,1);
-        }, 1);
-    },
-
     // this is where all entities will be moved
     // and checked for collisions etc
     update: function() {
@@ -431,6 +329,17 @@ var POP = {
                     }
                     POP.score.hit += 1;
                 }
+                
+                var total=POP.score.hit+POP.score.escaped;
+                
+                if(total>10)
+                {
+                      console.log("total 10 games");            
+                      $state.go('scorepage');  
+                }
+                
+                
+                POP.totalNumber=100;
 
                 POP.entities[i].remove = hit;
             }
@@ -494,7 +403,7 @@ var POP = {
     // and render
     loop: function() {
 
-        requestAnimFrame( POP.loop );
+        $window.requestAnimFrame( POP.loop );
 
         POP.update();
         POP.render();
@@ -502,7 +411,6 @@ var POP = {
 
 
 };
-
 // checks if two entties are touching
 POP.collides = function(a, b) {
 
@@ -516,7 +424,7 @@ POP.collides = function(a, b) {
         } else {
             return false;
         }
-};
+}
 
 
 // abstracts various canvas operations into
@@ -683,8 +591,125 @@ POP.Particle = function(x, y,r, col) {
     };
 
 };
+    
+    
+POP.init = function() {
+        console.log(" Inside init function Got canvas");
+        // the proportion of width to height
+        POP.RATIO = POP.WIDTH / POP.HEIGHT;
+        // these will change when the screen is resize
+        POP.currentWidth = POP.WIDTH;
+        POP.currentHeight = POP.HEIGHT;
+        // this is our canvas element
+        POP.canvas = $window.document.getElementsByTagName('canvas')[0];
+        
+        // it's important to set this
+        // otherwise the browser will
+        // default to 320x200
+        POP.canvas.width = POP.WIDTH;
+        POP.canvas.height = POP.HEIGHT;
+        // the canvas context allows us to 
+        // interact with the canvas api
+        POP.ctx = POP.canvas.getContext('2d');
+        // we need to sniff out android & ios
+        // so we can hide the address bar in
+        // our resize function
+        POP.ua = $window.navigator.userAgent.toLowerCase();
+         console.log("user agent is:"+POP.ua);
+        POP.android = POP.ua.indexOf('android') > -1 ? true : false;
+        POP.ios = ( POP.ua.indexOf('iphone') > -1 || POP.ua.indexOf('ipad') > -1  ) ? true : false;
+
+        // set up our wave effect
+        // basically, a series of overlapping circles
+        // across the top of screen
+        POP.wave = {
+            x: -25, // x coord of first circle
+            y: -40, // y coord of first circle
+            r: 50, // circle radius
+            time: 0, // we'll use this in calculating the sine wave
+            offset: 0 // this will be the sine wave offset
+        }; 
+        // calculate how many circles we need to 
+        // cover the screen width
+        POP.wave.total = Math.ceil(POP.WIDTH / POP.wave.r) + 1;
+
+        // listen for clicks
+        $window.addEventListener('click', function(e) {
+            e.preventDefault();
+            POP.Input.set(e);
+        }, false);
+
+        // listen for touches
+        $window.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            // the event object has an array
+            // called touches, we just want
+            // the first touch
+            POP.Input.set(e.touches[0]);
+        }, false);
+        $window.addEventListener('touchmove', function(e) {
+            // we're not interested in this
+            // but prevent default behaviour
+            // so the screen doesn't scroll
+            // or zoom
+            e.preventDefault();
+        }, false);
+        $window.addEventListener('touchend', function(e) {
+            // as above
+            e.preventDefault();
+        }, false);
+
+        // we're ready to resize
+        POP.resize();
+
+        POP.loop();
+
+    };
+
+
+POP.resize = function() {
+    
+        POP.canvas = $window.document.getElementsByTagName('canvas')[0];
+        
+        POP.currentHeight = $window.innerHeight;
+        // resize the width in proportion
+        // to the new height
+        POP.currentWidth = POP.currentHeight * POP.RATIO;
+
+        // this will create some extra space on the
+        // page, allowing us to scroll pass
+        // the address bar, and thus hide it.
+        if (POP.android || POP.ios) {
+            $window.document.body.style.height = ($window.innerHeight + 50) + 'px';
+        }
+
+        // set the new canvas style width & height
+        // note: our canvas is still 320x480 but
+        // we're essentially scaling it with CSS
+        POP.canvas.style.width = POP.currentWidth + 'px';
+        POP.canvas.style.height = POP.currentHeight + 'px';
+
+        // the amount by which the css resized canvas
+        // is different to the actual (480x320) size.
+        POP.scale = POP.currentWidth / POP.WIDTH;
+        // position of canvas in relation to
+        // the screen
+        POP.offset.top = POP.canvas.offsetTop;
+        POP.offset.left = POP.canvas.offsetLeft;
+
+        // we use a timeout here as some mobile
+        // browsers won't scroll if there is not
+        // a small delay
+        $window.setTimeout(function() {
+                $window.scrollTo(0,1);
+        }, 1);
+    };
+    
 
 $window.addEventListener('load', POP.init, false);
 $window.addEventListener('resize', POP.resize, false);
+    
+$window.onload = POP.init();
+    $window.resize = POP.resize();
         
 })
