@@ -119,7 +119,20 @@ ul , li {
         
         
         <div class="container">
-
+ <ion-content overflow-scroll='false' delegate-handle="userDetailContent" on-scroll="onUserDetailContentScroll()" header-shrink scroll-event-interval="5">
+      <div class="about-header">
+          
+        <div class="row like-btn">
+          <div class="col text-left">
+            <div ng-class="liked ? 'bg-color-red like-button-with-text':'bg-color-white like-button'" ng-click="like()">
+              <i class="ion-heart" ng-class="liked ? 'color-white':'color-red'"></i>
+              <span ng-if="liked">Liked</span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </ion-content>
+          
 <a class="btn icon-btn btn-primary" ng-click ="like()"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
 
 <a class="btn icon-btn btn-info" ng-click ="share()"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
