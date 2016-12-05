@@ -80,7 +80,7 @@ bubbleSmashApp.controller("RegisterController", function($scope, $http, $state, 
     }
    
 });
-bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $window) {
+bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $window,$ionicScrollDelegate, $ionicSlideBoxDelegate) {
      $scope.easylevel = function(){
         $state.go('easylevel')
     }
@@ -105,6 +105,23 @@ bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $wi
      $scope.rate = function() {
         $state.go('rate')
     }
+     
+     
+  $ionicSlideBoxDelegate.update();
+  $scope.onUserDetailContentScroll = onUserDetailContentScroll
+  $scope.like = like
+
+  function like(){
+    $scope.liked = true
+  }
+
+  function onUserDetailContentScroll(){
+    var scrollDelegate = $ionicScrollDelegate.$getByHandle('userDetailContent');
+    var scrollView = scrollDelegate.getScrollView();
+    $scope.$broadcast('userDetailContent.scroll', scrollView);
+  }
+  
+  
 });
 bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordovaGeolocation, $ionicPlatform, $http, shareDataService) {
 
