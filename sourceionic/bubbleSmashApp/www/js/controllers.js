@@ -61,6 +61,35 @@ $scope.iden = shareDataService.dataObj1;
         $state.go('quit')
     }
 });
+
+bubbleSmashApp.controller("UpdateProfileController", function($scope, $http, $state, $window,$cordovaOauth,$cordovaSplashscreen,shareDataService) {
+       $scope.iden = shareDataService.dataObj1;   
+    
+     $scope.cancel = function() {
+        $state.go('home')
+    }
+     
+    $scope.updateUserData = function(email, phoneNumber,password) {
+            $http({
+                    method: 'PUT',
+                    url: 'https://api.mongolab.com/api/1/databases/asedb/collections/demoase/' + $scope.iden._id.$oid  + '?apiKey=s2gDY_UX42GDk8QBsJSlGuQqrwXFGtxg',
+                    data: JSON.stringify({
+                        "$set": {
+                            name : $scope.iden.name,
+                            username : $scope.iden.username,
+                            password : password,
+                            score: $scope.data,
+                            email : email,
+                            phoneNumber : phoneNumber   
+                        }
+                    }),
+                    contentType: "application/json"
+                }).success(function () {
+                      $scope.updateStatus ="User updated successfully";
+                })
+    }
+});
+
 bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $window,$cordovaOauth,$cordovaSplashscreen) {
 
     $scope.login = function(username, password) {
