@@ -52,7 +52,7 @@ $scope.iden = shareDataService.dataObj1;
                     document.getElementById("scoresDiv").innerHTML = table;
                 })
            } 
-
+// Going back to home page from Score page
     $scope.backToHome = function() {
     $state.go('home')
     }
