@@ -1,3 +1,5 @@
+// Score controller
+
 bubbleSmashApp.controller("ScoreController", function($scope, $state, shareDataService,$rootScope,$http) {
      console.log("Score data is :"+ shareDataService.dataObj);
 
@@ -56,19 +58,24 @@ $scope.iden = shareDataService.dataObj1;
     $scope.backToHome = function() {
     $state.go('home')
     }
-    
+// Going to Login Page from Score page    
     $scope.quit = function() {
         $state.go('login')
     }
 });
 
+// Update Profile controller
+
 bubbleSmashApp.controller("UpdateProfileController", function($scope, $http, $state, $window,$cordovaOauth,$cordovaSplashscreen,shareDataService) {
-       $scope.iden = shareDataService.dataObj1;   
+    // Getting the identifictaion of Current user from MLab
+    $scope.iden = shareDataService.dataObj1;   
     
+    // Going to home page
      $scope.cancel = function() {
         $state.go('home')
     }
      
+    // Updating User data 
     $scope.updateUserData = function(email, phoneNumber,password) {
             $http({
                     method: 'PUT',
@@ -90,15 +97,18 @@ bubbleSmashApp.controller("UpdateProfileController", function($scope, $http, $st
     }
 });
 
+// Login controller
 bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $window,$cordovaOauth,shareDataService,$cordovaSplashscreen) {
 
-$scope.updateProfile = function() {
+// Navigating to Update Profile Page
+    $scope.updateProfile = function() {
         $state.go('updateProfile')
     } 
+   // Navigating to home page 
     $scope.gotoHome= function() {
         $state.go('home')
     } 
-
+// Login functionlaity
     $scope.login = function(username, password) {
       $http({
         method: 'GET',
@@ -110,10 +120,10 @@ $scope.updateProfile = function() {
             for(i=0;i<obj.length;i++)
             {
                 if (angular.equals(obj[i].username, username)&&angular.equals(obj[i].password,password)) {
-$scope.iden = obj[i];
+                    $scope.iden = obj[i];
                     shareDataService.dataObj1=$scope.iden;
                     $scope.iden = shareDataService.dataObj1;                    
-$state.go('home')
+                    $state.go('home')
                 }
                 else {
                      count++;
@@ -124,10 +134,11 @@ $state.go('home')
              }
       })
     }
+    // Navigating to regsiter page
     $scope.register = function(){
         $state.go('register')
     }
-    
+    // facebook login functionality
      $scope.faceBookLogin = function() {
           console.log("Inside facebook login");
         $cordovaOauth.facebook("1112137608839690", ["email"]).then(function(result) {             
@@ -137,13 +148,15 @@ $state.go('home')
             console.log(" error in facebook login"+error);
         });
     };
-      
+    // Guest User Login  
     $scope.guestLogin = function() {
           console.log("Inside guest Login");
           $state.go('home');  
     };
 });
+// Registration Controller
 bubbleSmashApp.controller("RegisterController", function($scope, $http, $state, $window) {
+   // Storing the data in database
      $scope.registerdata = function(name, username, password) {
 
        $http({
@@ -162,12 +175,13 @@ bubbleSmashApp.controller("RegisterController", function($scope, $http, $state, 
        })
 
      }
-      
+  // Navigating to login page    
     $scope.cancel = function(){
         $state.go('cancel')
     }
    
 });
+// Level Controller
 bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $window,$ionicScrollDelegate, $ionicSlideBoxDelegate) {
      $scope.easylevel = function(){
          console.log("start easylevel");
