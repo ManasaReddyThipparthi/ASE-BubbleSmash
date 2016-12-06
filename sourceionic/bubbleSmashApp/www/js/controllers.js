@@ -169,12 +169,12 @@ bubbleSmashApp.controller("RegisterController", function($scope, $http, $state, 
    
 });
 bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $window,$ionicScrollDelegate, $ionicSlideBoxDelegate) {
-     $scope.easy = function(){
+     $scope.easylevel = function(){
          console.log("start easylevel");
         $state.go('easylevel')
     }
 
-    $scope.intermediate = function() {
+    $scope.intermediatelevel = function() {
         $state.go('intermediatelevel')
     }
 
