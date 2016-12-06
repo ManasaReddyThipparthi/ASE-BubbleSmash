@@ -1,21 +1,5 @@
-<ion-view title="Easy Level" data-ng-init="init()">
-    <ion-content>
-        <div class="row row-center" id="easyLevelBubble" >
-	<span id="location">
-                {{location}}</span>
-            <div class="col text-center" >
-                <audio id="audio" src="img/single_bubble.mp3"
-                       preload="auto"></audio>
-                <div class="bouncerEasy1 animation" id="bubble1" ng-click="smashBubble1()">
-                    <img src="img/bubble.png" alt="button" class="bubbleIcon"  id="bubbleIcon">
-                </div>  
-                <div class="bouncerEasy2 animation" id="bubble2" ng-click="smashBubble2()">
-                    <img src="img/bubbleExtra.png" alt="button" class="bubbleIcon"  id="bubbleIcon">
-                </div>  
-                 <div class="bouncerEasy3 animation" id="bubble3" ng-click="smashBubble3()">
-                    <img src="img/bubble.png" alt="button" class="bubbleIcon"  id="bubbleIcon">
-                </div>  
-            </div>
-        </div>
+<ion-view title="Easy Level " id="easyLevelPage" style="margin: 0; padding: 0; background: #000;" >
+    <ion-content padding="true" class="has-header">      
+    <canvas style="display: block; margin: 0 auto; background: #fff;"></canvas>    
     </ion-content>
 </ion-view>
