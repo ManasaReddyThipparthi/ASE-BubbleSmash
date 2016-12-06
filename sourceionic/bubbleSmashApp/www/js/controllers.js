@@ -90,7 +90,7 @@ bubbleSmashApp.controller("UpdateProfileController", function($scope, $http, $st
     }
 });
 
-bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $window,$cordovaOauth,$cordovaSplashscreen) {
+bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $window,$cordovaOauth,shareDataService,$cordovaSplashscreen) {
 
 $scope.updateProfile = function() {
         $state.go('updateProfile')
