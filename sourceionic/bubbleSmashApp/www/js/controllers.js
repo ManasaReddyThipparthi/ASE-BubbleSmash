@@ -92,6 +92,13 @@ bubbleSmashApp.controller("UpdateProfileController", function($scope, $http, $st
 
 bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $window,$cordovaOauth,$cordovaSplashscreen) {
 
+$scope.updateProfile = function() {
+        $state.go('updateProfile')
+    } 
+    $scope.gotoHome= function() {
+        $state.go('home')
+    } 
+
     $scope.login = function(username, password) {
       $http({
         method: 'GET',
@@ -103,7 +110,10 @@ bubbleSmashApp.controller("LoginController", function($scope, $http, $state, $wi
             for(i=0;i<obj.length;i++)
             {
                 if (angular.equals(obj[i].username, username)&&angular.equals(obj[i].password,password)) {
-                    $state.go('home')
+$scope.iden = obj[i];
+                    shareDataService.dataObj1=$scope.iden;
+                    $scope.iden = shareDataService.dataObj1;                    
+$state.go('home')
                 }
                 else {
                      count++;
