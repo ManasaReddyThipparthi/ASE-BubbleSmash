@@ -9,6 +9,50 @@ $scope.iden = shareDataService.dataObj1;
 
     //console.log("Score data is :"+ data);
     
+// Update score in DB
+
+            $http({
+                    method: 'PUT',
+                    url: 'https://api.mongolab.com/api/1/databases/asedb/collections/demoase/' + $scope.iden._id.$oid  + '?apiKey=s2gDY_UX42GDk8QBsJSlGuQqrwXFGtxg',
+                    data: JSON.stringify({
+                        "$set": {
+                            name : $scope.iden.name,
+                            username : $scope.username,
+                            password : $scope.password,
+                            score: $scope.data
+                        }
+                    }),
+                    contentType: "application/json"
+                }).success(function () {
+                        $scope.getTopScores();
+                })
+
+// Get Top Scores from DB
+
+  $scope.getTopScores =function(){         
+            $http({
+                method: 'GET',
+                url : 'https://api.mlab.com/api/1/databases/asedb/collections/demoase/?apiKey=s2gDY_UX42GDk8QBsJSlGuQqrwXFGtxg'
+                }).success(function(data) {
+                    var obj=angular.fromJson(data);
+                    var count=0;
+                var scores = [[]];
+                 for(i=0;i<obj.length;i++)
+                    {
+                        scores.push({name:obj[i].name, score:obj[i].score});
+                    }
+                    var sortedScores = scores.sort(function(a, b){return b.score - a.score});
+                    console.log(scores);
+                    console.log(sortedScores);
+                    var table = "<table class='scoresData'><tr><th class='column1'>Name</th><th class='column2'>Score</th></tr>";                    
+                    for(var i=1;i<=5;i++){
+                        table += "<tr><td class='column1'>"+sortedScores[i].name+"</td><td class='column2'>"+sortedScores[i].score+"</td></tr>";
+                    }
+                    table += "</table>";
+                    document.getElementById("scoresDiv").innerHTML = table;
+                })
+           } 
+
     $scope.backToHome = function() {
     $state.go('backtohome')
     }
