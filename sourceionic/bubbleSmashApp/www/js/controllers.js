@@ -1,6 +1,11 @@
-bubbleSmashApp.controller("ScoreController", function($scope, $state, shareDataService,$rootScope) {
+bubbleSmashApp.controller("ScoreController", function($scope, $state, shareDataService,$rootScope,$http) {
      console.log("Score data is :"+ shareDataService.dataObj);
+
+// Making Score Global
     $scope.data = shareDataService.dataObj;
+
+// Getting Identification Number from Mongo DB
+$scope.iden = shareDataService.dataObj1;
 
     //console.log("Score data is :"+ data);
     

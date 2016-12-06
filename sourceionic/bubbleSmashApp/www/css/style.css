@@ -89,3 +89,14 @@ a {
 label{
     color:white;
 }
+.scoresData{
+    color:white;
+    font-family: monospace;
+}
+table.scoresData td {
+    padding:5px;
+    font-size:15px;
+}
+table{
+    margin-left:36%;
+}

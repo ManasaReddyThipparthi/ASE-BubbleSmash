@@ -42,7 +42,7 @@ bubbleSmashApp.config(function($stateProvider, $urlRouterProvider) {
   })
   .state('easylevel', {
         url: '/easylevel',
-        templateUrl: 'templates/easyLevel.html',
+        templateUrl: 'templates/easylevel.html',
         controller: 'EasyLevelController'
   })
   .state("intermediatelevel", {
@@ -61,7 +61,13 @@ bubbleSmashApp.config(function($stateProvider, $urlRouterProvider) {
   })
   .state("settings", {
         url: "/settings",
-        templateUrl: "templates/settings.html"
+        templateUrl: "templates/settings.html",
+controller: "LoginController"
+  })
+ .state("updateProfile", {
+        url: "/updateProfile",
+        templateUrl: "templates/updateProfile.html",
+        controller: "UpdateProfileController"
   })
   .state("backtohome", {
         url: "/backtohome",
