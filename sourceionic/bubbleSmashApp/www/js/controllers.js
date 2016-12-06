@@ -281,6 +281,7 @@ bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordo
  // Playing Audio File on bubble click
 
  $scope.playSprite = function(id) {
+    
     var audioSprite = document.getElementById('audio');
 var spriteData = {
     bubble: {
@@ -892,6 +893,7 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
   // Playing Sound on button click
 
  $scope.playSprite = function(id) {
+  
     var audioSprite = document.getElementById('audio');
 var spriteData = {
     bubble: {
@@ -1418,7 +1420,31 @@ $window.resize = POP.resize();
 bubbleSmashApp.controller('expertGameLevelCtrl',function($scope,$window,$document,$state,$rootScope,shareDataService){
     
     console.log("start game 00");
+    // Adding Sound on Bubble click
+
+    $scope.playSprite = function(id) {
     
+    var audioSprite = document.getElementById('audio');
+var spriteData = {
+    bubble: {
+        start: 0,
+        length: 1.1
+    }
+};
+var currentSprite = {};
+var onTimeUpdate = function() {
+    if (this.currentTime >= currentSprite.start + currentSprite.length) {
+        this.pause();
+    }
+};
+audioSprite.addEventListener('timeupdate', onTimeUpdate, false);
+    if (spriteData[id] && spriteData[id].length) {
+        currentSprite = spriteData[id];
+        audioSprite.currentTime = currentSprite.start;
+        audioSprite.play();
+    }
+};  
+
     /*$scope.play = function(sound) {
         $cordovaNativeAudio.play(sound);
     };*/    
@@ -1526,6 +1552,7 @@ var POP = {
                         )); 
                     }
                     POP.score.hit += 1;
+                    $scope.playSprite();
                 }
                 
                 var total=POP.score.hit+POP.score.escaped;
