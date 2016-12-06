@@ -169,12 +169,12 @@ bubbleSmashApp.controller("RegisterController", function($scope, $http, $state, 
    
 });
 bubbleSmashApp.controller("LevelController", function($scope, $http, $state, $window,$ionicScrollDelegate, $ionicSlideBoxDelegate) {
-     $scope.easylevel = function(){
+     $scope.easy = function(){
          console.log("start easylevel");
         $state.go('easylevel')
     }
 
-    $scope.intermediatelevel = function() {
+    $scope.intermediate = function() {
         $state.go('intermediatelevel')
     }
 
@@ -278,7 +278,30 @@ bubbleSmashApp.controller("EasyLevelController", function($scope, $state, $cordo
     
         
     console.log("start game easy level");
-    
+ // Playing Audio File on bubble click
+
+ $scope.playSprite = function(id) {
+    var audioSprite = document.getElementById('audio');
+var spriteData = {
+    bubble: {
+        start: 0,
+        length: 1.1
+    }
+};
+var currentSprite = {};
+var onTimeUpdate = function() {
+    if (this.currentTime >= currentSprite.start + currentSprite.length) {
+        this.pause();
+    }
+};
+audioSprite.addEventListener('timeupdate', onTimeUpdate, false);
+    if (spriteData[id] && spriteData[id].length) {
+        currentSprite = spriteData[id];
+        audioSprite.currentTime = currentSprite.start;
+        audioSprite.play();
+    }
+};
+   
     /*$scope.play = function(sound) {
         $cordovaNativeAudio.play(sound);
     };*/    
@@ -387,6 +410,7 @@ var POP = {
                         )); 
                     }
                     POP.score.hit += 1;
+
                 }
                 
                 var total=POP.score.hit+POP.score.escaped;
