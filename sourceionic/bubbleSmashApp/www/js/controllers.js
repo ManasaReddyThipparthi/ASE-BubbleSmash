@@ -58,7 +58,7 @@ $scope.iden = shareDataService.dataObj1;
     }
     
     $scope.quit = function() {
-        $state.go('quit')
+        $state.go('login')
     }
 });
 
