@@ -54,7 +54,7 @@ $scope.iden = shareDataService.dataObj1;
            } 
 
     $scope.backToHome = function() {
-    $state.go('backtohome')
+    $state.go('home')
     }
     
     $scope.quit = function() {
@@ -1025,6 +1025,7 @@ var POP = {
                         )); 
                     }
                     POP.score.hit += 1;
+		$scope.playSprite();
                 }
                 
                 var total=POP.score.hit+POP.score.escaped;
