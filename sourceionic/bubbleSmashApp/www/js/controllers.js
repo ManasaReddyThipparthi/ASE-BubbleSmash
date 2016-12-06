@@ -410,7 +410,7 @@ var POP = {
                         )); 
                     }
                     POP.score.hit += 1;
-
+$scope.playSprite();
                 }
                 
                 var total=POP.score.hit+POP.score.escaped;
@@ -889,7 +889,29 @@ bubbleSmashApp.controller("IntermediateLevelController", function($scope, $state
         $scope.data = shareDataService.dataObj;
     }*/
     
-    
+  // Playing Sound on button click
+
+ $scope.playSprite = function(id) {
+    var audioSprite = document.getElementById('audio');
+var spriteData = {
+    bubble: {
+        start: 0,
+        length: 1.1
+    }
+};
+var currentSprite = {};
+var onTimeUpdate = function() {
+    if (this.currentTime >= currentSprite.start + currentSprite.length) {
+        this.pause();
+    }
+};
+audioSprite.addEventListener('timeupdate', onTimeUpdate, false);
+    if (spriteData[id] && spriteData[id].length) {
+        currentSprite = spriteData[id];
+        audioSprite.currentTime = currentSprite.start;
+        audioSprite.play();
+    }
+};  
     
     
     
